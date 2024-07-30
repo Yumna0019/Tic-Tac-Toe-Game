@@ -9,6 +9,11 @@ Welcome to the **Tic Tac Toe Game** project! Dive into the classic game of Tic T
 - **💻 Pure JavaScript**: Built with vanilla JavaScript, HTML, and CSS.
 - **🔄 Responsive**: Perfect for playing on any device.
 
+
+## 🌐 Live Demo
+
+Experience the classic game of Tic Tac Toe [here](https://tic-tac-toe-game-x-js.netlify.app/).
+
 ## 🚀 Getting Started
 
 Follow these instructions to get the project up and running on your local machine.
@@ -24,10 +29,6 @@ Follow these instructions to get the project up and running on your local machin
    cd Tic-Tac-Toe-Game
    ```
 3. **Open `index.html` in your favorite web browser.**
-
-## 🌐 Live Demo
-
-Experience the classic game of Tic Tac Toe [here](https://tic-tac-toe-game-x-js.netlify.app/).
 
 ## 🎮 How to Play
 
