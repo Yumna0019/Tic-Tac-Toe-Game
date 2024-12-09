@@ -13,6 +13,15 @@
         <button class="new-btn">New Game</button> 
     </div>
     <h1>Tic Tac Toe Game</h1>
+
+    <div class="mode-selection">
+        <label for="mode">Choose Opponent:</label>
+        <select id="mode">
+            <option value="friend">Friend</option>
+            <option value="ai">AI</option>
+        </select>
+    </div>
+
     <p id="turn-info">Game Start</p>
     <main class="container">
         <section class="game">
@@ -27,6 +36,7 @@
             <button class="box"></button>
         </section>
     </main>
+    
     <button class="reset-btn">Reset Game</button>
 
     <script src="main.js"></script>
