@@ -112,79 +112,6 @@ const checkWinner = () => {
     return false;
 };
 
-// const makeAIMove = () => {
-//     if (gameEnded) return; 
-//     turnInfo.innerText = "AI is thinking...";
-
-//     const emptyBoxes = [...boxes].filter(box => box.innerText === "");
-
-//     for (let box of emptyBoxes) {
-//         box.innerText = "X";
-
-//         if (checkWinner()) {
-//             box.disabled = true; 
-//             return;
-//         }
-//         box.innerText = "";
-//     }
-
-//     if (!gameEnded && emptyBoxes.length > 0) {
-//         const randomIndex = Math.floor(Math.random() * emptyBoxes.length);
-//         const chosenBox = emptyBoxes[randomIndex];
-//         chosenBox.innerText = "X";
-//         chosenBox.disabled = true;
-//         turnO = true;
-//         updateTurnInfo();
-//         checkWinner();
-//     }
-// };
-
-const makeAIMove = () => {
-    if (gameEnded) return; 
-    turnInfo.innerText = "AI is thinking...";
-
-    const emptyBoxes = [...boxes].filter(box => box.innerText === "");
-
-    // Step 1: Check for AI's own winning move
-    for (let box of emptyBoxes) {
-        box.innerText = "X"; // Simulate AI's move
-        if (simulateWinner()) { // Use simulateWinner for temporary check
-            box.disabled = true; 
-            console.log("AI wins with this move");
-            checkWinner(); // Confirm the win as this is a real move
-            return; // Stop further moves
-        }
-        box.innerText = ""; // Reset if not a winning move
-    }
-
-    // Step 2: Check for O's winning move and block
-    for (let box of emptyBoxes) {
-        box.innerText = "O"; // Simulate O's move
-        if (simulateWinner()) { // Use simulateWinner for temporary check
-            box.innerText = "X"; // Block O's winning move
-            box.disabled = true;
-            console.log(`AI blocks O at index ${Array.from(boxes).indexOf(box)}`);
-            turnO = true;
-            updateTurnInfo();
-            checkWinner(); // Confirm the game state after blocking
-            return; // Stop further moves
-        }
-        box.innerText = ""; // Reset if not a blocking move
-    }
-
-    // Step 3: Make a random move
-    if (!gameEnded && emptyBoxes.length > 0) {
-        const randomIndex = Math.floor(Math.random() * emptyBoxes.length);
-        const chosenBox = emptyBoxes[randomIndex];
-        chosenBox.innerText = "X";
-        chosenBox.disabled = true; 
-        console.log(`AI places X at random index ${Array.from(boxes).indexOf(chosenBox)}`);
-        turnO = true; // Switch back to player's turn
-        updateTurnInfo();
-        checkWinner(); // Check the game state
-    }
-};
-
 const simulateWinner = () => {
     for (let pattern of win_patterns) {
         let pos1Val = boxes[pattern[0]].innerText;
@@ -192,11 +119,53 @@ const simulateWinner = () => {
         let pos3Val = boxes[pattern[2]].innerText;
 
         if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
-            console.log("AI block but O winnes");
             return true; 
         }
     }
-    return false; // No winner yet
+    return false; 
+};
+
+const makeAIMove = () => {
+    if (gameEnded) return; 
+    turnInfo.innerText = "AI is thinking...";
+
+    const emptyBoxes = [...boxes].filter(box => box.innerText === "");
+
+    // Check for AI's own winning move
+    for (let box of emptyBoxes) {
+        box.innerText = "X"; 
+        if (simulateWinner()) { 
+            box.disabled = true; 
+            checkWinner(); 
+            return;
+        }
+        box.innerText = ""; 
+    }
+
+    // Check for O's winning move and block
+    for (let box of emptyBoxes) {
+        box.innerText = "O";
+        if (simulateWinner()) { 
+            box.innerText = "X"; 
+            box.disabled = true;
+            turnO = true;
+            updateTurnInfo();
+            checkWinner(); 
+            return; 
+        }
+        box.innerText = ""; 
+    }
+
+    // Make a random move
+    if (!gameEnded && emptyBoxes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * emptyBoxes.length);
+        const chosenBox = emptyBoxes[randomIndex];
+        chosenBox.innerText = "X";
+        chosenBox.disabled = true; 
+        turnO = true; 
+        updateTurnInfo();
+        checkWinner();
+    }
 };
 
 boxes.forEach((box, index) => {
