@@ -7,7 +7,7 @@ Welcome to the **Tic Tac Toe Game** project! Dive into the game of Tic Tac Toe, 
 - **⭕ You vs  ❌(Your Friend or AI (as opponents))**: Challenge your friends or get yourself chalenged by choosing AI as your Opponent.
 - **🎨 Sleek Design**: Enjoy a visually appealing and intuitive interface.
 - **💻 Pure JavaScript**: Built with JavaScript, HTML, and CSS.
-<!--- **🔄 Responsive**: Perfect for playing on any device.-->
+- **🔄 Responsive**: Perfect for playing on any device.
 
 
 ## 🌐 Live Demo
